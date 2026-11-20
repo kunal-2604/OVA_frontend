@@ -1,7 +1,9 @@
 import axios from 'axios';
 
+const BASE_URL = import.meta.env.VITE_API_URL || '';
+
 const client = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || '',
+  baseURL: BASE_URL,
   timeout: 180000,
 });
 
@@ -21,5 +23,5 @@ export const api = {
     return (await client.post('/api/histopathology/predict', data)).data;
   },
 
-  getReportUrl: (resultId) => `/api/reports/${resultId}`,
+  getReportUrl: (resultId) => `${BASE_URL}/api/reports/${resultId}`,
 };
